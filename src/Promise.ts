@@ -44,11 +44,7 @@ export class Promise<T> extends EventDispatcher implements IPromise<T> {
         super();
         this._state = EPromiseStates.PENDING;
         this.promiseClass = (Object.getPrototypeOf(this).constructor);
-        try {
-            executor(this._resolve.bind(this), this._reject.bind(this));
-        } catch (e) {
-            this._reject(e);
-        }
+        executor(this._resolve.bind(this), this._reject.bind(this));
     }
 
     public get state(): EPromiseStates {
